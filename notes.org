@@ -1,0 +1,35 @@
+* open-sec-data
+** Notes
+*** Edgar filing system logic
+    - organized as index files. 4 different files types, each a different way the data is sorted
+      1. Company - by company
+      2. form - by form type
+      3. master - sorted by CIK number
+      4. xbrl - sorted by filings containing XBRL files (so doesn't contain all, I believe)
+    - two major index files = two different ways of organizing sec filings.
+      1. "/edgar/daily-index" - daily filings
+         - directory structure: "daily-index/year/qtr#/<file-type>.<YYYYMMDD>.idx"
+      2. "/edgar/full-index" - each file contains the entire quarter's filings
+         minus current quarter, which is refiled every day to previous biz day
+         till quarter is over, then is refiled as static quarterly file
+         - directory structure: "full-index/year/qtr#/<file-type>.gz/zip/Z/.idx
+           - In otherwords, they have compressed versions and non compressed
+             versions available since an entire quarter's worth of data is near
+             200k lines of text, ~25-30 megabytes
+** TODO [0/2]
+   1. [ ] Scraper for EDGAR Filing directories
+   3. [ ] Get test cases of parsing SEC filings
+      1. [ ] 10k
+      2. [ ] 10q
+      3. [ ] 8k
+   4. 
+** Reference:
+*** Filings
+**** 10K
+     - annually required filing by SEC that gives comprehensive report on a company's performance
+**** 10Q
+     - Quarterly required filing by SEC, same as 10K otherwise
+**** 8K
+     - like 10K and 10Q except not on a regular release schedule. If something
+       important happens that investors would want to know, company is supposed
+       to file one.
