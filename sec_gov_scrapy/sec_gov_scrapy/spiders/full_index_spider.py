@@ -2,15 +2,16 @@ from scrapy import Spider
 from scrapy.shell import inspect_response
 from scrapy import Selector
 from scrapy import Request
+import requests
 from sec_gov_scrapy.items import SecGovScrapyItem
 
 EDGAR_ARCHIVE = "https://www.sec.gov/Archives/edgar/full-index/"
-
 
 class FullIndexSpider(Spider):
 
     name = "full-index.sec.gov"
     working_url = ""
+    count = 0
     # print("allowed_domains")
     # allowed_domains = ["sec.gov"]
     # start_urls = ["https://www.sec.gov/Archives/edgar/full-index/"]
@@ -21,6 +22,7 @@ class FullIndexSpider(Spider):
         self.working_url = ""
 
     def set_url(self, url):
+        # not needed, responses.url achieves goal
         self.working_url = url
         print("working_url: {}".format(self.working_url))
 
@@ -61,26 +63,20 @@ class FullIndexSpider(Spider):
 
         for quarter in quarters:
             print(quarter)
-            # item = SecGovScrapyItem()
+            item = SecGovScrapyItem()
             # item['qtr_dir'] = quarter
             print(response.url)
-            crawler_idx = response.url + quarter + "form.gz"
-            # item['idx_url'] = idx
+            crawler_idx = response.url + quarter + "crawler.idx"
+            item['crawler_url'] = crawler_idx
             # yield item
-            yield Request(url=crawler_idx, callback=self.parse_crawler)
+            yield item
             # yield item
 
-    def parse_crawler(self, response):
-        """
-        default scrapy parse method when no other is specified with callback
-        """
-        print(response.url)
-        print(response.body)
-        item = SecGovScrapyItem()
-        item['crawler_url'] = response.url
-        item['crawler_body'] = response.body
-        # yield item
-
-
-        # idx_files = response.selector.xpath(
-        #     '//*[@id="main-content"]/table/tr/td/a/@href').extract()
+    # def parse_crawler(self, response):
+    #     """
+    #     default scrapy parse method when no other is specified with callback
+    #     """
+    #     item = SecGovScrapyItem()
+    #     item['crawler_url'] = response.url
+    #     item['crawler_body'] = response.text
+    #     yield item

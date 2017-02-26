@@ -69,8 +69,8 @@ ITEM_PIPELINES = {
     'scrapy.pipelines.images.ImagesPipeline': 1
 }
 
-# ENABLE FILE STORAGE
-FILES_STORE = "../../data/crawler.idx/"
+# this option doesn't do what it's supposed to do so lol
+FILES_STORE = "../../data/crawler.idx"
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See http://doc.scrapy.org/en/latest/topics/autothrottle.html
 #AUTOTHROTTLE_ENABLED = True
