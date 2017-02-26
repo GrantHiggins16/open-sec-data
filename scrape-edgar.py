@@ -14,4 +14,4 @@ rootdir = "~/projects/open-sec-data/data/crawler.idx"
 if __name__ == "__main__":
     for subdir, dirs, files in os.walk(rootdir):
         for file in files:
-            print(os.path.join(subdir, file))
+            print(str(os.path.join(subdir, file)))
