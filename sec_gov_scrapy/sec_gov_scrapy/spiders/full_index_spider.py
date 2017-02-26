@@ -16,6 +16,7 @@ class FullIndexSpider(Spider):
     # start_urls = ["https://www.sec.gov/Archives/edgar/full-index/"]
 
     def __init__(self, *a, **kw):
+        # this is probably unnecessary given my discovery of response.url
         super(FullIndexSpider, self).__init__(*a, **kw)
         self.working_url = ""
 
@@ -39,8 +40,8 @@ class FullIndexSpider(Spider):
         for year in years:
             if year[:-1:].isnumeric():
                 print(year)
-                item = SecGovScrapyItem()
-                item['url'] = year
+                # item = SecGovScrapyItem()
+                # item['year_dir'] = year
                 quarters = EDGAR_ARCHIVE+year
                 # self.set_url(quarters)
                 print(response.url)
@@ -60,20 +61,26 @@ class FullIndexSpider(Spider):
 
         for quarter in quarters:
             print(quarter)
-            item = SecGovScrapyItem()
-            item['url'] = quarter
+            # item = SecGovScrapyItem()
+            # item['qtr_dir'] = quarter
             print(response.url)
-            # self.set_url(idx)
-            yield item
+            crawler_idx = response.url + quarter + "form.gz"
+            # item['idx_url'] = idx
+            # yield item
+            yield Request(url=crawler_idx, callback=self.parse_crawler)
+            # yield item
 
-    # def parse(self, response):
-    #     """
-    #     default scrapy parse method when no other is specified with callback
-    #     """
+    def parse_crawler(self, response):
+        """
+        default scrapy parse method when no other is specified with callback
+        """
+        print(response.url)
+        print(response.body)
+        item = SecGovScrapyItem()
+        item['crawler_url'] = response.url
+        item['crawler_body'] = response.body
+        # yield item
 
-    #     years = response.selector.xpath('//div[@id="main-content"]/table/tr/td/a/@href').extract()
-    #     print(years)
-        # for year in years:
-        #     item = SecGovScrapyItem()
-        #     item['url'] = year.xpath('/@href').extract()
-        #     yield item
+
+        # idx_files = response.selector.xpath(
+        #     '//*[@id="main-content"]/table/tr/td/a/@href').extract()
