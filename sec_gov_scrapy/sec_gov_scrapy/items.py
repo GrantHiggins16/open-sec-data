@@ -12,4 +12,8 @@ class SecGovScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     company = scrapy.Field()
-    url = scrapy.Field()
+    year_dir = scrapy.Field()
+    qtr_dir = scrapy.Field()
+    idx_url = scrapy.Field()
+    crawler_url = scrapy.Field()
+    crawler_body = scrapy.Field()

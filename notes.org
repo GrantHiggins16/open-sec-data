@@ -18,11 +18,12 @@
              200k lines of text, ~25-30 megabytes
 ** TODO [0/2]
    1. [ ] Scraper for EDGAR Filing directories
-   3. [ ] Get test cases of parsing SEC filings
-      1. [ ] 10k
+   2. [ ] Get test cases of parsing SEC filings
+      1. [ ] *10k* *priority*, MVP
+         - each entry in the idx minus for crawler.idx gives a .txt entry with a pure ASCII rendering (not nice)
+         - probably best to use crawler.idx, take the top url which is the desired form, and go from there
       2. [ ] 10q
       3. [ ] 8k
-   4. 
 ** Reference:
 *** Filings
 **** 10K
