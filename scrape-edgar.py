@@ -7,11 +7,10 @@ from bs4 import BeautifulSoup as BS4
 import scrapy
 import gzip
 from lxml import etree
+import os
 
-EDGAR_ARCHIVE = "https://www.sec.gov/Archives/edgar/full-index/"
-QTR = "QTR"
+rootdir = "~/projects/open-sec-data/data/crawler.idx"
 
-
- document = open("", "r")
-soup = BS4(document, 'html.parser')
-print(soup.get_text())   
+for subdir, dirs, files in os.walk(rootdir):
+    for file in files:
+        print os.path.join(subdir, file)
