@@ -28,6 +28,8 @@
 *** Filings
 **** 10K
      - annually required filing by SEC that gives comprehensive report on a company's performance
+     - balance sheets seem to be kept in <B> tag as either Balance sheets or Consolidated Balance sheets
+       - also found <LONGNAME> and <SHORTNAME> tags
 **** 10Q
      - Quarterly required filing by SEC, same as 10K otherwise
 **** 8K
