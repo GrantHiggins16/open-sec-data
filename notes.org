@@ -1,3 +1,4 @@
+#+STARTUP: showeverything
 * open-sec-data
 ** Notes
 *** Edgar filing system logic
@@ -28,9 +29,50 @@
 *** Filings
 **** 10K
      - annually required filing by SEC that gives comprehensive report on a company's performance
+     - balance sheets seem to be kept in <B> tag as either Balance sheets or Consolidated Balance sheets
+       - also found <LONGNAME> and <SHORTNAME> tags
 **** 10Q
      - Quarterly required filing by SEC, same as 10K otherwise
 **** 8K
      - like 10K and 10Q except not on a regular release schedule. If something
        important happens that investors would want to know, company is supposed
        to file one.
+* Research
+** Tech cos
+*** Google 2015
+**** 10k - looked at category financial statements subsection consolidated balance sheet
+***** current assets - ton of categories
+***** current liabilities - ton of categories
+***** stockholders equity - ton of categories
+***** subheader for google Inc which contains a copy of the above table - not sure why
+**** no other doc on our list - only a 10k/a and some 15-15d files
+*** Microsoft 2015
+**** 10-Q (did not have 10k listed) - looked at financial statements subsection balance sheets
+***** current assets - ton of categories
+***** current liabilities - ton of categories
+***** stockholders equity - ton of categories
+***** note: categories listed do not line up with google
+**** 8k 
+***** neither listed on new site - not something that can be scraped from the new edgar display 
+***** did find link to pdf https://www.sec.gov/Archives/edgar/data/789019/000119312515394364/d89470d8k.htm
+***** seems to be a list of elected and reelected board members
+***** another link: https://www.sec.gov/Archives/edgar/data/789019/000119312515353706/d17875d8k.htm
+**** other filings include an 11-k, a bunch of 4s, and 2 sc 13G/A files
+*** Facebook 2015 https://www.youtube.com/watch?v=k56Qqxo-1Mk
+**** 10k - looked at financial statements subsection consolidated balance sheet
+***** current assets - ton of categories
+***** current liabilities - ton of categories
+***** stockholders equity - ton of categories
+**** also had 4s, 5s, an 8k, and 3 SC 13G/A files
+*** Apple 2015 
+**** 10Q - looked under financial statements subsection condensed consolidated balance sheets
+***** current assets - lots of categories
+***** current liabilities - lots of categories
+***** stockholder's equity - lots of categories
+**** no 10k available
+**** lots of 4s, 3 424B2 files, 4 8-ks, a def 14A, a defA14A, 2 FWPs, a PX14A6G, 2 SC 13G/As, and an SD
+*** General Notes
+**** main categories were the same throughout the companies
+***** every main category contained cell with total liabilities/assets/equity
+***** while some of the subcategories were the same - some were not and plenty seemed like the same thing worded differently
+**** based on what I saw - 10k/qs seem to be the most intuitive targets as they contain actual hard data - not sure what we would do with 8ks
