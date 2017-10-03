@@ -125,8 +125,8 @@ def downloadFiles(forms):
                     try:
                         download = s.get(form.generateURL())
                         downloadDone = True
-                    except:
-                        print("\nConnection refused by the server..")
+                    except requests.exceptions.ConnectTimeout:
+                        print("\nConnection refused by the server")
                         print("The connection will be attempted again in 5 seconds")
                         sleep(5)
                         connectionCounter += 1
